@@ -79,5 +79,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, :path => "provision/base.sh"
   config.vm.provision :shell, :path => "provision/git.sh", privileged: false
   config.vm.provision :shell, :path => "provision/node.sh", privileged: false
-  config.vm.provision :shell, :path => "provision/docker.sh", privileged: false
+  config.vm.provision :shell, :path => "provision/docker.sh"
 end
