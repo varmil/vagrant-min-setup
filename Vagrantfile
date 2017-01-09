@@ -12,11 +12,12 @@ Vagrant.configure(2) do |config|
     node.vm.network :forwarded_port, guest: 80, host: 8083
     node.vm.network :private_network, ip: "192.168.33.13"
     # node.vm.synced_folder "./", "/vagrant", type: "nfs"
+    node.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos6.5"
+  config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -77,4 +78,5 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, :path => "provision/base.sh"
   config.vm.provision :shell, :path => "provision/node.sh", privileged: false
+  config.vm.provision :shell, :path => "provision/docker.sh", privileged: false
 end
