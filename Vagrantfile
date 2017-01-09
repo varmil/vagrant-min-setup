@@ -76,4 +76,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision :file, source: "provision/file/id_rsa", destination: ".ssh/id_rsa"
 
   config.vm.provision :shell, :path => "provision/base.sh"
+  config.vm.provision :shell, :path => "provision/node.sh", privileged: false
 end
