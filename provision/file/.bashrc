@@ -35,4 +35,10 @@ alias gs='git status'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
+# nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# pyenv
+export PATH="/home/vagrant/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

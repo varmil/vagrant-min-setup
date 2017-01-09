@@ -17,4 +17,4 @@ ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 chmod 600 .ssh/id_rsa
 
 # yum
-yum install -y git vim
+yum install -y git vim epel-release
