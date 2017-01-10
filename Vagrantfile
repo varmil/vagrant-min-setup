@@ -56,6 +56,8 @@ Vagrant.configure(2) do |config|
     # vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "3", "--ioapic", "on"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+
+    config.ssh.insert_key = false
   end
   #
   # View the documentation for the provider you are using for more
