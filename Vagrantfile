@@ -17,7 +17,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos/7"
+  config.vm.box = "centos7.0-tommy-muehle"
+  config.vm.box_url = "https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.1.0/centos-7.0-x86_64.box"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -57,7 +58,7 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 
-    config.ssh.insert_key = false
+    # config.ssh.insert_key = false
   end
   #
   # View the documentation for the provider you are using for more
@@ -83,4 +84,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, :path => "provision/git.sh", privileged: false
   config.vm.provision :shell, :path => "provision/node.sh", privileged: false
   config.vm.provision :shell, :path => "provision/docker.sh"
+
+  # pingが通らなくなるバグへの対応
+  # http://qiita.com/junqiq/items/a19d3ea48b072a1b28d3
+  config.vm.provision "shell", run: "always", inline: "systemctl restart network.service"
 end

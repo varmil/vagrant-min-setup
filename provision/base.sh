@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# locale
+localectl set-locale LANG=en_US.utf8
+
 # fastestmirror
 echo "prefer=ftp.jaist.ac.jp" >> /etc/yum/pluginconf.d/fastestmirror.conf
 
@@ -17,4 +20,5 @@ ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 chmod 600 .ssh/id_rsa
 
 # yum
+yum update -y
 yum install -y git vim epel-release
