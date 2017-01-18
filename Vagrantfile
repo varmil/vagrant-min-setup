@@ -57,8 +57,6 @@ Vagrant.configure(2) do |config|
     # vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "3", "--ioapic", "on"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-
-    # config.ssh.insert_key = false
   end
   #
   # View the documentation for the provider you are using for more
@@ -88,4 +86,6 @@ Vagrant.configure(2) do |config|
   # pingが通らなくなるバグへの対応
   # http://qiita.com/junqiq/items/a19d3ea48b072a1b28d3
   config.vm.provision "shell", run: "always", inline: "systemctl restart network.service"
+  # vagrant --> docker container へ直接通信を流すための設定
+  config.vm.provision "shell", run: "always", inline: "sysctl -w net.ipv4.ip_forward=1"
 end
